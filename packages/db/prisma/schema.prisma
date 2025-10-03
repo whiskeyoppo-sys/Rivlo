@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      UserRole @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+enum UserRole {
+  CUSTOMER
+  MERCHANT
+  ADMIN
+}
+
+model Category {
+  id        String     @id @default(cuid())
+  name      String
+  slug      String     @unique
+  parentId  String?
+  parent    Category?  @relation("CategoryToCategory", fields: [parentId], references: [id])
+  children  Category[] @relation("CategoryToCategory")
+  products  Product[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Product {
+  id           String    @id @default(cuid())
+  slug         String    @unique
+  name         String
+  description  String?
+  priceCents   Int
+  currency     String    @default("USD")
+  sku          String    @unique
+  imageUrl     String?
+  isActive     Boolean   @default(true)
+  categoryId   String?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  sustainabilityScore Float? // 0..1 estimate for eco impact
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  orderItems   OrderItem[]
+}
+
+model Order {
+  id           String       @id @default(cuid())
+  userId       String?
+  user         User?        @relation(fields: [userId], references: [id])
+  status       OrderStatus  @default(PENDING)
+  totalCents   Int
+  currency     String       @default("USD")
+  stripeCheckoutSessionId String?
+  stripePaymentIntentId   String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  items        OrderItem[]
+  payment      Payment?
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FULFILLED
+  CANCELLED
+}
+
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  order        Order   @relation(fields: [orderId], references: [id])
+  productId    String
+  product      Product @relation(fields: [productId], references: [id])
+  quantity     Int
+  unitPriceCents Int
+  totalCents   Int
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  orderId   String   @unique
+  order     Order    @relation(fields: [orderId], references: [id])
+  provider  String   @default("stripe")
+  status    String
+  amountCents Int
+  currency  String   @default("USD")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditEvent {
+  id        String   @id @default(cuid())
+  userId    String?
+  type      String
+  payload   Json
+  createdAt DateTime @default(now())
+}
