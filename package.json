@@ -1,19 +1,26 @@
 {
-  "name": "rivlo",
+  "name": "risn-ecommerce-monorepo",
   "private": true,
+  "version": "0.1.0",
+  "description": "RISN E-Commerce Store monorepo (Next.js + NestJS + Prisma + Stripe) with TurboRepo",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
+    "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "typecheck": "turbo run check-types",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "test": "turbo run test",
+    "format": "prettier --write .",
+    "db:generate": "pnpm --filter @risn/db exec prisma generate",
+    "db:migrate": "pnpm --filter @risn/db exec prisma migrate dev",
+    "db:deploy": "pnpm --filter @risn/db exec prisma migrate deploy"
   },
   "devDependencies": {
+    "eslint": "^9.34.0",
     "prettier": "^3.6.2",
     "turbo": "^2.5.8",
     "typescript": "5.9.2"
-  },
-  "engines": {
-    "node": ">=18"
   }
 }
