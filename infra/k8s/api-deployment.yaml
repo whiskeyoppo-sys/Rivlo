@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: risn-api
+  labels:
+    app: risn-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: risn-api
+  template:
+    metadata:
+      labels:
+        app: risn-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/your-org/risn-api:latest
+          ports:
+            - containerPort: 3001
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef: { name: risn-secrets, key: DATABASE_URL }
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://otel-collector:4317
+            - name: NODE_ENV
+              value: production
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: risn-api
+spec:
+  type: ClusterIP
+  selector:
+    app: risn-api
+  ports:
+    - port: 3001
+      targetPort: 3001

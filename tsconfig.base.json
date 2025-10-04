@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "baseUrl": ".",
+    "paths": {
+      "@repo/config": ["packages/config/src"],
+      "@repo/db": ["packages/db/src"],
+      "@repo/payments": ["packages/payments/src"],
+      "@repo/observability": ["packages/observability/src"],
+      "@repo/sustainability": ["packages/sustainability/src"],
+      "@repo/recommendations": ["packages/recommendations/src"],
+      "@repo/ui": ["packages/ui/src"]
+    }
+  }
+}

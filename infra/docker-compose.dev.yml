@@ -1,0 +1,58 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: risn
+      POSTGRES_PASSWORD: risn
+      POSTGRES_DB: risn
+    ports: ["5432:5432"]
+    volumes:
+      - ./docker-data/postgres:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://risn:risn@db:5432/risn?schema=public
+      REDIS_URL: redis://redis:6379
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
+      WEB_URL: http://web:3000
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+    ports: ["3001:3001"]
+    depends_on: [db, redis, otel-collector]
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    ports: ["3000:3000"]
+    depends_on: [api]
+  worker:
+    build:
+      context: ..
+    dockerfile: apps/worker/Dockerfile
+    environment:
+      NODE_ENV: development
+      REDIS_URL: redis://redis:6379
+    depends_on: [redis]
+  otel-collector:
+    image: otel/opentelemetry-collector:0.104.0
+    command: ["--config=/etc/otel-collector-config.yml"]
+    volumes:
+      - ./otel-collector-config.yml:/etc/otel-collector-config.yml
+    ports:
+      - "4317:4317"
+  jaeger:
+    image: jaegertracing/all-in-one:1.57
+    ports:
+      - "16686:16686"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true

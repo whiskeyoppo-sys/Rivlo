@@ -1,6 +1,4 @@
-# Turborepo starter
-
-This Turborepo starter is maintained by the Turborepo core team.
+# RISN E‑Commerce Monorepo
 
 ## Using this example
 
@@ -32,20 +30,13 @@ This Turborepo has some additional tools already setup for you:
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-### Build
+## Quick start
 
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+pnpm install
+cp .env.example .env
+pnpm db:generate
+pnpm dev
 ```
 
 You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
@@ -60,20 +51,43 @@ yarn exec turbo build --filter=docs
 pnpm exec turbo build --filter=docs
 ```
 
-### Develop
+## Apps
+- `apps/web`: Next.js storefront
+- `apps/api`: NestJS API
+- `apps/worker`: BullMQ worker
 
-To develop all apps and packages, run the following command:
+## Packages
+- `@repo/db`: Prisma models and client
+- `@repo/payments`: Payment adapters (Stripe, iPay88 stub)
+- `@repo/observability`: OpenTelemetry setup
+- `@repo/config`, `@repo/ui`, `@repo/sustainability`, `@repo/recommendations`
 
-```
-cd my-turborepo
+## Infra
+- `infra/docker-compose.yml`: Postgres, Redis, OTel, Jaeger
+- `infra/docker-compose.dev.yml`: Full stack dev
+- `infra/k8s`: K8s manifests
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+## MVP features (≤6 weeks)
+- MY payments (Stripe Checkout with FPX/GrabPay) + iPay88 path
+- AI stylist MVP (opt‑in), dynamic bundles, UGC photo/video
+- Growth engine: referral, cart recovery, IG/TikTok hooks
+- Observability: OTel + Jaeger; accessibility tests
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+## Ethics & compliance
+- Privacy by default; explicit consent for analytics and personalization
+- PDPA/GDPR data minimization; 12m events, 24m orders retention
+- Accessibility: WCAG 2.1 AA checks in CI
+
+## Deployment
+- Web on Vercel; API/Worker on Render/Fly; DB on Neon/Supabase; Redis on Upstash
+
+## Scripts
+```bash
+pnpm dev            # run all apps
+pnpm build          # build all
+pnpm typecheck      # type check
+pnpm lint           # lint
+pnpm db:deploy      # run prisma migrations
 ```
 
 You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
