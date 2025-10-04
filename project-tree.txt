@@ -1,0 +1,270 @@
+.
+├── README.md
+├── Rivlo
+│   ├── LICENSE
+│   ├── README.md
+│   ├── backend
+│   │   ├── package.json
+│   │   ├── prisma
+│   │   │   ├── schema.prisma
+│   │   │   └── seed.ts
+│   │   ├── prisma-client
+│   │   ├── scripts
+│   │   │   ├── migrate.sh
+│   │   │   └── seed.sh
+│   │   ├── src
+│   │   │   ├── app.module.ts
+│   │   │   ├── auth
+│   │   │   │   ├── auth.controller.ts
+│   │   │   │   ├── auth.module.ts
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   └── jwt.strategy.ts
+│   │   │   ├── cart
+│   │   │   │   ├── cart.controller.ts
+│   │   │   │   ├── cart.module.ts
+│   │   │   │   └── cart.service.ts
+│   │   │   ├── checkout
+│   │   │   │   ├── checkout.controller.ts
+│   │   │   │   ├── checkout.module.ts
+│   │   │   │   └── checkout.service.ts
+│   │   │   ├── common
+│   │   │   │   ├── guards
+│   │   │   │   └── interceptors
+│   │   │   ├── config
+│   │   │   │   └── configuration.ts
+│   │   │   ├── main.ts
+│   │   │   ├── orders
+│   │   │   │   ├── orders.module.ts
+│   │   │   │   └── orders.service.ts
+│   │   │   ├── products
+│   │   │   │   ├── products.controller.ts
+│   │   │   │   ├── products.module.ts
+│   │   │   │   └── products.service.ts
+│   │   │   ├── telemetry
+│   │   │   └── users
+│   │   │       ├── users.controller.ts
+│   │   │       ├── users.module.ts
+│   │   │       └── users.service.ts
+│   │   └── tsconfig.json
+│   ├── docs
+│   │   ├── api.md
+│   │   ├── architecture.md
+│   │   ├── dev-setup-termux.md
+│   │   └── runbooks
+│   │       ├── backups.md
+│   │       └── incident-response.md
+│   ├── frontend
+│   │   ├── components
+│   │   │   ├── CartPet.tsx
+│   │   │   ├── ProductCard.tsx
+│   │   │   └── TwistedHero.tsx
+│   │   ├── next.config.js
+│   │   ├── package.json
+│   │   ├── pages
+│   │   │   ├── _app.tsx
+│   │   │   ├── _document.tsx
+│   │   │   ├── cart.tsx
+│   │   │   ├── index.tsx
+│   │   │   └── products
+│   │   │       └── [id].tsx
+│   │   ├── postcss.config.js
+│   │   ├── public
+│   │   │   ├── favicon.ico
+│   │   │   └── images
+│   │   │       ├── placeholder.png
+│   │   │       ├── sample-lamp.jpg
+│   │   │       └── sample-sneaker.jpg
+│   │   ├── styles
+│   │   │   └── globals.css
+│   │   ├── tailwind.config.js
+│   │   ├── tsconfig.json
+│   │   └── utils
+│   │       └── api-client.ts
+│   ├── infra
+│   │   ├── ci
+│   │   ├── docker
+│   │   │   ├── backend.Dockerfile
+│   │   │   ├── docker-compose.yml
+│   │   │   └── frontend.Dockerfile
+│   │   ├── k8s
+│   │   │   └── backend-deployment.yaml
+│   │   └── terraform
+│   │       └── main.tf
+│   ├── package.json
+│   ├── packages
+│   │   ├── types
+│   │   │   ├── package.json
+│   │   │   └── src
+│   │   │       └── index.ts
+│   │   ├── ui
+│   │   │   ├── package.json
+│   │   │   └── src
+│   │   │       └── components
+│   │   └── utils
+│   │       ├── package.json
+│   │       └── src
+│   │           └── logger.ts
+│   ├── playground
+│   │   └── ai-sandbox
+│   │       └── generate-descriptions.ts
+│   ├── pnpm-lock.yaml
+│   ├── pnpm-workspace.yaml
+│   ├── scripts
+│   │   ├── dev-helpers
+│   │   │   └── watch-and-reload.sh
+│   │   ├── generate
+│   │   │   └── scaffold-module.ts
+│   │   └── release
+│   │       └── release.sh
+│   ├── services
+│   │   ├── cart
+│   │   │   ├── package.json
+│   │   │   └── src
+│   │   │       └── index.ts
+│   │   ├── pricing
+│   │   │   └── package.json
+│   │   ├── recommendations
+│   │   │   ├── package.json
+│   │   │   └── src
+│   │   │       └── index.ts
+│   │   └── search
+│   │       ├── package.json
+│   │       └── src
+│   │           ├── index.ts
+│   │           └── mapper.ts
+│   ├── tests
+│   │   ├── e2e
+│   │   │   ├── e2e.spec.ts
+│   │   │   └── playwright.config.ts
+│   │   ├── jest.config.js
+│   │   └── unit
+│   │       └── backend
+│   └── tsconfig.base.json
+├── actual.txt
+├── apps
+│   ├── api
+│   │   ├── README.md
+│   │   ├── eslint.config.mjs
+│   │   ├── nest-cli.json
+│   │   ├── node_modules
+│   │   │   ├── @eslint
+│   │   │   │   ├── eslintrc -> ../.pnpm/@eslint+eslintrc@3.3.1/node_modules/@eslint/eslintrc
+│   │   │   │   └── js -> ../.pnpm/@eslint+js@9.36.0/node_modules/@eslint/js
+│   │   │   ├── @nestjs
+│   │   │   │   ├── cli -> ../.pnpm/@nestjs+cli@11.0.10_@types+node@22.18.8/node_modules/@nestjs/cli
+│   │   │   │   ├── common -> ../.pnpm/@nestjs+common@11.1.6_reflect-metadata@0.2.2_rxjs@7.8.2/node_modules/@nestjs/common
+│   │   │   │   ├── core -> ../.pnpm/@nestjs+core@11.1.6_@nestjs+common@11.1.6_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+pl_62541e2cd37d22f56ae815cc690c5bd7/node_modules/@nestjs/core
+│   │   │   │   ├── platform-express -> ../.pnpm/@nestjs+platform-express@11.1.6_@nestjs+common@11.1.6_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+core@11.1.6/node_modules/@nestjs/platform-express
+│   │   │   │   ├── schematics -> ../.pnpm/@nestjs+schematics@11.0.7_chokidar@4.0.3_typescript@5.9.3/node_modules/@nestjs/schematics
+│   │   │   │   └── testing -> ../.pnpm/@nestjs+testing@11.1.6_@nestjs+common@11.1.6_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs_dd6684f7093a3356fb649783fa0dc75b/node_modules/@nestjs/testing
+│   │   │   ├── @types
+│   │   │   │   ├── express -> ../.pnpm/@types+express@5.0.3/node_modules/@types/express
+│   │   │   │   ├── jest -> ../.pnpm/@types+jest@30.0.0/node_modules/@types/jest
+│   │   │   │   ├── node -> ../.pnpm/@types+node@22.18.8/node_modules/@types/node
+│   │   │   │   └── supertest -> ../.pnpm/@types+supertest@6.0.3/node_modules/@types/supertest
+│   │   │   ├── eslint -> .pnpm/eslint@9.36.0/node_modules/eslint
+│   │   │   ├── eslint-config-prettier -> .pnpm/eslint-config-prettier@10.1.8_eslint@9.36.0/node_modules/eslint-config-prettier
+│   │   │   ├── eslint-plugin-prettier -> .pnpm/eslint-plugin-prettier@5.5.4_@types+eslint@9.6.1_eslint-config-prettier@10.1.8_eslint@9_55e0affd2624b8170e0aa79f0c464861/node_modules/eslint-plugin-prettier
+│   │   │   ├── globals -> .pnpm/globals@16.4.0/node_modules/globals
+│   │   │   ├── jest -> .pnpm/jest@30.2.0_@types+node@22.18.8_ts-node@10.9.2_@types+node@22.18.8_typescript@5.9.3_/node_modules/jest
+│   │   │   ├── prettier -> .pnpm/prettier@3.6.2/node_modules/prettier
+│   │   │   ├── reflect-metadata -> .pnpm/reflect-metadata@0.2.2/node_modules/reflect-metadata
+│   │   │   ├── rxjs -> .pnpm/rxjs@7.8.2/node_modules/rxjs
+│   │   │   ├── source-map-support -> .pnpm/source-map-support@0.5.21/node_modules/source-map-support
+│   │   │   ├── supertest -> .pnpm/supertest@7.1.4/node_modules/supertest
+│   │   │   ├── ts-jest -> .pnpm/ts-jest@29.4.4_@babel+core@7.28.4_@jest+transform@30.2.0_@jest+types@30.2.0_babel-jest@_b8e5eb2c5f669f74efa6f639b51ecec3/node_modules/ts-jest
+│   │   │   ├── ts-loader -> .pnpm/ts-loader@9.5.4_typescript@5.9.3_webpack@5.100.2/node_modules/ts-loader
+│   │   │   ├── ts-node -> .pnpm/ts-node@10.9.2_@types+node@22.18.8_typescript@5.9.3/node_modules/ts-node
+│   │   │   ├── tsconfig-paths -> .pnpm/tsconfig-paths@4.2.0/node_modules/tsconfig-paths
+│   │   │   ├── typescript -> .pnpm/typescript@5.9.3/node_modules/typescript
+│   │   │   └── typescript-eslint -> .pnpm/typescript-eslint@8.45.0_eslint@9.36.0_typescript@5.9.3/node_modules/typescript-eslint
+│   │   ├── package.json
+│   │   ├── pnpm-lock.yaml
+│   │   ├── src
+│   │   │   ├── app.controller.spec.ts
+│   │   │   ├── app.controller.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── app.service.ts
+│   │   │   └── main.ts
+│   │   ├── test
+│   │   │   ├── app.e2e-spec.ts
+│   │   │   └── jest-e2e.json
+│   │   ├── tsconfig.build.json
+│   │   └── tsconfig.json
+│   ├── docs
+│   │   ├── README.md
+│   │   ├── app
+│   │   │   ├── favicon.ico
+│   │   │   ├── fonts
+│   │   │   │   ├── GeistMonoVF.woff
+│   │   │   │   └── GeistVF.woff
+│   │   │   ├── globals.css
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.module.css
+│   │   │   └── page.tsx
+│   │   ├── eslint.config.js
+│   │   ├── next-env.d.ts
+│   │   ├── next.config.js
+│   │   ├── package.json
+│   │   ├── public
+│   │   │   ├── file-text.svg
+│   │   │   ├── globe.svg
+│   │   │   ├── next.svg
+│   │   │   ├── turborepo-dark.svg
+│   │   │   ├── turborepo-light.svg
+│   │   │   ├── vercel.svg
+│   │   │   └── window.svg
+│   │   └── tsconfig.json
+│   └── web
+│       ├── README.md
+│       ├── app
+│       │   ├── favicon.ico
+│       │   ├── fonts
+│       │   │   ├── GeistMonoVF.woff
+│       │   │   └── GeistVF.woff
+│       │   ├── globals.css
+│       │   ├── layout.tsx
+│       │   ├── page.module.css
+│       │   └── page.tsx
+│       ├── eslint.config.js
+│       ├── next-env.d.ts
+│       ├── next.config.js
+│       ├── package.json
+│       ├── public
+│       │   ├── file-text.svg
+│       │   ├── globe.svg
+│       │   ├── next.svg
+│       │   ├── turborepo-dark.svg
+│       │   ├── turborepo-light.svg
+│       │   ├── vercel.svg
+│       │   └── window.svg
+│       └── tsconfig.json
+├── package.json
+├── packages
+│   ├── eslint-config
+│   │   ├── README.md
+│   │   ├── base.js
+│   │   ├── next.js
+│   │   ├── package.json
+│   │   └── react-internal.js
+│   ├── typescript-config
+│   │   ├── base.json
+│   │   ├── nextjs.json
+│   │   ├── package.json
+│   │   └── react-library.json
+│   ├── ui
+│   │   ├── eslint.config.mjs
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   └── code.tsx
+│   │   ├── tsconfig.json
+│   │   ├── ui
+│   │   └── utils
+│   └── utils
+├── pnpm-workspace.yaml
+├── project-tree.txt
+└── turbo.json
+
+111 directories, 157 files
